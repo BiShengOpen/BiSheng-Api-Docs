@@ -6,8 +6,10 @@
 
 - 请求host: openapi.bisheng.top
 
+- 网关名称: openapi 
+
 - 请求路径:
-注意请求路径是以:==/网关名称/APIKey/资源路径的形式==,如:/api/4IPW5FujlbS/order/new;其中api为网关别名,4IPW5FujlbS为APIKey
+注意请求路径是以:/网关名称/APIKey/资源路径 的形式,如:/openapi/4IPW5FujlbS/order/new;其中openapi为网关名称,4IPW5FujlbS为APIKey
 
 - 产品规则：
 基础币种_计价币种。如BTC/USDT，相关参数为BTC_USDT；ETH/BTC， 相关参数为ETH_BTC。以此类推
@@ -64,7 +66,7 @@ openapi.bisheng.top\n
 3. 请求路径
 
 ```
-/api/4IPW5FujlbS/order/new\n
+/openapi/4IPW5FujlbS/order/new\n
 ```
 4. 请求参数(排序后的),每个参数之间以'&'间隔,最后没有换行符
 
@@ -77,21 +79,21 @@ ABC=xxx&APIKey=xxx&SignatureMethod=xxx&SignatureVersion=xxx&Timestamp=xxx&bar=xx
 ```
 POST\n
 openapi.bisheng.top\n
-/api/4IPW5FujlbS/order/new\n
+/openapi/4IPW5FujlbS/order/new\n
 ABC=xxx&APIKey=xxx&SignatureMethod=xxx&SignatureVersion=xxx&Timestamp=xxx&bar=xxx&foo=xxx
 ```
 
 首先对这个字符串使用hmacsha256方法进行hash得到H，然后再调用secp256k1进行签名,签名的私钥即用户申请API得得到的APISecrect。得到签名sign后，再进行base64转码，query参数Signature的值就是这个base64转码后的结果。
 
 最终的请求为:
-https://openapi.bisheng.top/4IPW5FujlbS/order/new?ABC=xxx&APIKey=xxx&SignatureMethod=xxx&SignatureVersion=xxx&Timestamp=xxx&bar=xxx&foo=xxx&Signature=xxxxxx
+https://openapi.bisheng.top/openapi/4IPW5FujlbS/order/new?ABC=xxx&APIKey=xxx&SignatureMethod=xxx&SignatureVersion=xxx&Timestamp=xxx&bar=xxx&foo=xxx&Signature=xxxxxx
 
 
 ## 示例
 
 1. 请求方法:POST
 2. 请求host:openapi.bisheng.top
-3. 请求路径:/api/nShkJqyAdbcWdb6J/order/new
+3. 请求路径:/openapi/nShkJqyAdbcWdb6J/order/new
 4. 请求参数
 
 query |值
@@ -109,7 +111,7 @@ foo|userid
 ```
 POST
 openapi.bisheng.top
-/api/nShkJqyAdbcWdb6J/order/new
+/openapi/nShkJqyAdbcWdb6J/order/new
 APIKey=nShkJqyAdbcWdb6J&SignatureMethod=secp256k1&SignatureVersion=1&Timestamp=1545041797&bar=ordernum&foo=userid
 ```
 HmacSHA256 hash后得到下面的结果(16进制表示):
@@ -151,7 +153,7 @@ vCUtoKJwYHDeFQP6f8Wa7A7LLt3D0iMJPNupv1IKS1F%2BZzHD%2Fs9XwnG3nZaRA7WnrsH4646uUDa5
 所以最终请求为:
 
 ```
-https://openapi.bisheng.top/api/nShkJqyAdbcWdb6J/order/new?APIKey=nShkJqyAdbcWdb6J&SignatureMethod=secp256k1&SignatureVersion=1&Timestamp=1545041797&bar=ordernum&foo=userid&Signature=vCUtoKJwYHDeFQP6f8Wa7A7LLt3D0iMJPNupv1IKS1F%2BZzHD%2Fs9XwnG3nZaRA7WnrsH4646uUDa5VJrgiTiBXAE%3D
+https://openapi.bisheng.top/openapi/nShkJqyAdbcWdb6J/order/new?APIKey=nShkJqyAdbcWdb6J&SignatureMethod=secp256k1&SignatureVersion=1&Timestamp=1545041797&bar=ordernum&foo=userid&Signature=vCUtoKJwYHDeFQP6f8Wa7A7LLt3D0iMJPNupv1IKS1F%2BZzHD%2Fs9XwnG3nZaRA7WnrsH4646uUDa5VJrgiTiBXAE%3D
 ```
 
 ##### 二、请求接口说明
